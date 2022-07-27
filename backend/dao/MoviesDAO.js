@@ -15,7 +15,6 @@ export default class MoviesDAO {
                 .collection('movies');
         }
         catch(e) {
-            console.log('FAIL');
             console.error(`unable to connect in MoviesDAO: ${e}`);
         }
     }
@@ -55,7 +54,6 @@ export default class MoviesDAO {
             return {moviesList, totalNumMovies };
         }
         catch(e) {
-            console.log('FAIL');
             console.error(`Unable to issue find command, ${e}`);
             return {moviesList: [], totalNumMovies: 0 }
         }
