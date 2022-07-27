@@ -12,6 +12,7 @@ import mongodb from 'mongodb';
 import MoviesRoute from './api/MoviesRoute.js';
 
 import MoviesDAO from './dao/MoviesDAO.js';
+import ReviewsDAO from './dao/ReviewsDAO.js';
 
 class Index {
     // create server
@@ -51,6 +52,8 @@ class Index {
 
             // get refernce to the MoviesDAO file
             await MoviesDAO.injectDB(client);
+
+            await ReviewsDAO.injectDB(client);
 
             // start web server
             Index.app.listen(port, () => {
