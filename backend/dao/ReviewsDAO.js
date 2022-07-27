@@ -1,5 +1,6 @@
 import mongodb from 'mongoDB'; // get access to ObjectId
 
+// model : Mongoose/MongoDB :: DAO : MongoDB (analogy)
 export default class ReviewsDAO {
     static reviews; 
 
@@ -18,6 +19,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // add review
     static async addReview(movieId, user, review, date) {
         try {
             const reviewDoc = {
@@ -35,6 +37,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // update review
     static async updateReview(reviewId, userId, review, date) {
         try {
             const updateResponse = await ReviewsDAO.reviews.updateOne(
@@ -49,6 +52,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // delete review
     static async deleteReview(reviewId, userId) {
         try {
             const deleteResponse = await ReviewsDAO.reviews.deleteOne({
