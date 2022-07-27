@@ -2,6 +2,8 @@ import e from 'express';
 import ReviewsDAO from '../dao/ReviewsDAO.js';
 
 export default class ReviewsController {
+
+    // add movie review
     static async apiPostReview(req, res, next) {
         try {
             // retrieve info from request's body parameter
@@ -30,6 +32,7 @@ export default class ReviewsController {
         }
     }
 
+    // update movie review
     static async apiUpdateReview(req, res, next) {
         try {
             const reviewId = req.body.review_id;
