@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 import mongodb from 'mongodb';
 
 // file to be created later
-import MoviesRoute from '.api/MoviesRoute.js';
+import MoviesRoute from './api/MoviesRoute.js';
 
 class Index {
     // create server
@@ -33,7 +33,7 @@ class Index {
         
         // specify initial routes 
         Index.app.use('/api/vl/movies',
-            MoviesRoute.configRoutes(Index.Router));
+            MoviesRoute.configRoutes(Index.router));
         Index.app.use('*', (req, res) => {
             res.status(404).json({error: 'not found'});
         });
