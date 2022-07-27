@@ -1,3 +1,4 @@
+import e from 'express';
 import ReviewsDAO from '../dao/ReviewsDAO.js';
 
 export default class ReviewsController {
@@ -26,6 +27,36 @@ export default class ReviewsController {
         catch(e) {
             // return error if post fails
             res.status(500).json({error: e.message });
+        }
+    }
+
+    static async apiUpdateReview(req, res, next) {
+        try {
+            const reviewId = req.body.review_id;
+            const { review } = req.body;
+
+            const date = new Date();
+
+            const ReviewResponse = await ReviewsDAO.updateReview(
+                reviewId,
+                req.body.user_id, // ensure that review is updated by original creator
+                review,
+                date
+            );
+
+            const { error } = ReviewResponse;
+            if(error) {
+                res.status.json({ error });
+            }
+
+            if (ReviewResponse.modifiedCount === 0) {
+                throw new Error('Unable to update review. User may not be original poster');
+            }
+
+            res.json({ status: 'success'});
+        }
+        catch {
+            res.status(500).json({ error: e.message });
         }
     }
 }
