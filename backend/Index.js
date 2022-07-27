@@ -11,6 +11,8 @@ import mongodb from 'mongodb';
 // file to be created later
 import MoviesRoute from './api/MoviesRoute.js';
 
+import MoviesDAO from './dao/MoviesDAO.js';
+
 class Index {
     // create server
     static app = express();
@@ -46,6 +48,9 @@ class Index {
         try {
             // Connect to MongoDB cluster
             await client.connect();
+
+            // get refernce to the MoviesDAO file
+            await MoviesDAO.injectDB(client);
 
             // start web server
             Index.app.listen(port, () => {
