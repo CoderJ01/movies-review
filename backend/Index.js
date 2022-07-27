@@ -2,24 +2,17 @@
 import express from 'express';
 import cors from 'cors';
 
-// access environment variables
-import dotenv from 'dotenv';
-
-// access database
-import mongodb from 'mongodb';
-
-// file to be created later
-import MoviesRoute from './api/MoviesRoute.js';
+import dotenv from 'dotenv'; // access environment variables
+import mongodb from 'mongodb'; // access database
+import MoviesRoute from './api/MoviesRoute.js'; // file to be created later
 
 import MoviesDAO from './dao/MoviesDAO.js';
 import ReviewsDAO from './dao/ReviewsDAO.js';
 
 class Index {
-    // create server
-    static app = express();
 
-    // provide access to export router
-    static router = express.Router();
+    static app = express(); // create server
+    static router = express.Router(); // provide access to export router
 
     // define application flow of execution
     static main() {
