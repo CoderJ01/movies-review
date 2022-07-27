@@ -57,6 +57,7 @@ class Index {
                 console.log(`server is running on port:${port}`);
             });
         } catch (e) {
+            console.log('FAIL');
             console.log(e);
             process.exit(1);
         }

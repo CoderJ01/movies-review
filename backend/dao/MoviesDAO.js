@@ -15,6 +15,7 @@ export default class MoviesDAO {
                 .collection('movies');
         }
         catch(e) {
+            console.log('FAIL');
             console.error(`unable to connect in MoviesDAO: ${e}`);
         }
     }
@@ -32,9 +33,7 @@ export default class MoviesDAO {
             }
             // filter results by movie rating
             else if ('rated' in filters) {
-                query = {
-                    rated: { $rated: { $eq: filters.rated } } // 'eq' short for 'equal', value comparison 
-                }
+                query = { rated: { $eq: filters.rated } } // 'eq' short for 'equal', value comparison
             }
             // Example:
             // {
@@ -51,11 +50,12 @@ export default class MoviesDAO {
                 .limit(moviesPerPage)
                 // skip applies first when used with limit
                 .skip(moviesPerPage * page);
-            const moviesList = await cursor.Array();
+            const moviesList = await cursor.toArray();
             const totalNumMovies = await MoviesDAO.movies.countDocuments(query);
             return {moviesList, totalNumMovies };
         }
         catch(e) {
+            console.log('FAIL');
             console.error(`Unable to issue find command, ${e}`);
             return {moviesList: [], totalNumMovies: 0 }
         }
