@@ -24,7 +24,7 @@ export default class ReviewsDAO {
         try {
             const reviewDoc = {
                 name: user.name,
-                user_id: user.id,
+                user_id: user._id,
                 date,
                 review,
                 movie_id: ReviewsDAO.ObjectId(movieId)
@@ -62,7 +62,8 @@ export default class ReviewsDAO {
             return deleteResponse;
         }
         catch(e) {
-            console.log(`unable to delete review: ${e}`);
+            console.log("FAIL");
+            console.error(`unable to delete review: ${e}`);
             return { error: e }
         }
     }

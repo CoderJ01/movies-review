@@ -8,7 +8,7 @@ export default class ReviewsController {
         try {
             // retrieve info from request's body parameter
             const movieId = req.body.movieId;
-            const { review } = req.bdoy;
+            const { review } = req.body;
             const userInfo = {
                 name: req.body.name,
                 _id: req.body.user_id
@@ -77,6 +77,7 @@ export default class ReviewsController {
             res.json({ status: 'success' });
         }
         catch (e) {
+            console.log("FAIL");
             res.status(500).json({ error: e.message });
         }
     }
