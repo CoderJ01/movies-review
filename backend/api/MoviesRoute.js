@@ -6,6 +6,8 @@ import ReviewsController from './ReviewsController.js';
 export default class MoviesRoute {
     static configRoutes(router) {
         router.route('/').get(MoviesController.apiGetMovies); // call MoviesController.apiGetMovies.
+        router.route('id/:id').get(MoviesController.apiGetMovieById); // retrieve a single movie and its reviews
+        router.router('/ratings').get(MoviesController.apiGetRatings); // returns a list of ratings
         router
             .route('/review')
             .post(ReviewsController.apiPostReview) // add review
