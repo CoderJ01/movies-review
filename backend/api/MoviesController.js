@@ -1,7 +1,6 @@
 // import DAO
 import MoviesDAO from '../dao/MoviesDAO.js';
 
-// 
 export default class MoviesController {
     // call apiGetMovies via URL to envoke query string in respose object (req.query)
     static async apiGetMovies(req, res, next) {
@@ -32,5 +31,32 @@ export default class MoviesController {
             total_results: totalNumMovies
         };
         res.json(response);
+    }
+
+    static async apiGetMovieById(req, res, next) {
+        try {
+            const id = req.params.id || {};
+            const movie = await MoviesDAO.apiGetMovieById(id); 
+            if(!movie) {
+                res.status(404).json({ error: 'not found' });
+                return;
+            }
+            res.json(movie);
+        }
+        catch(e) {
+            console.log(`api,${e}`);
+            res.status(500).json({ error: e});
+        }
+    }
+
+    static async apiGetRatings(req, res, next) {
+        try {
+            const propertyTypes = await MoviesDAO.getRatings();
+            res.json(propertyTypes);
+        }
+        catch(e) {
+            console.log(`api,${e}`);
+            res.status(500).json({ error: e });
+        }
     }
 }
