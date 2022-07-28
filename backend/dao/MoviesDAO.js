@@ -1,6 +1,10 @@
+import mongodb from 'mongodb';
+
 export default class MoviesDAO {
     // store the reference to the database
     static movies;
+
+    static ObjectId = mongodb.ObjectId;
 
     // injectDB provides the database refernece to 'movies' parameter
     static async injectDB(conn) {
@@ -69,6 +73,34 @@ export default class MoviesDAO {
         catch(e) {
             console.log(`unable to get ratings, ${e}`);
             return ratings;
+        }
+    }
+
+    static async getMovieById(id) {
+        try {
+            return await MoviesDAO.movies.aggregate([ // 'aggregate' provides sequence of data aggregation operations
+                {
+                    // look for movie document that matches the specific id
+                    $match: {
+                        _id: new MoviesDAO.ObjectId(id)
+                    }
+                }, 
+                {
+                    // perform equality join using '_id' from movie doc and 'movie_id' from form reviews collection
+                    // find reviews w/ specific movie id and return movie together with reviews in an array
+                    $lookup: 
+                    {
+                        from: 'reviews',
+                        localField: '_id',
+                        foreignField: 'movie_id',
+                        as: 'reviews'
+                    }
+                }
+            ]).next();
+        }
+        catch(e) {
+            console.error(`something went wrong in getMovieById: ${e}`);
+            throw e;
         }
     }
 }
