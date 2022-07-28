@@ -35,7 +35,9 @@ export default class MoviesController {
 
     static async apiGetMovieById(req, res, next) {
         try {
-            const id = req.params.id || {};
+            const id = req.params.id || {}; // look for id parameter 
+
+            // call MoviesDAO.getMovieById, which returns specific movie JSON-style
             const movie = await MoviesDAO.apiGetMovieById(id); 
             if(!movie) {
                 res.status(404).json({ error: 'not found' });
@@ -49,6 +51,7 @@ export default class MoviesController {
         }
     }
 
+    // call MoviesDAO.apiGetRatings
     static async apiGetRatings(req, res, next) {
         try {
             const propertyTypes = await MoviesDAO.getRatings();
