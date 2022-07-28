@@ -38,7 +38,7 @@ export default class MoviesController {
             const id = req.params.id || {}; // look for id parameter 
 
             // call MoviesDAO.getMovieById, which returns specific movie JSON-style
-            const movie = await MoviesDAO.apiGetMovieById(id); 
+            const movie = await MoviesDAO.getMovieById(id); 
             if(!movie) {
                 res.status(404).json({ error: 'not found' });
                 return;
@@ -47,7 +47,7 @@ export default class MoviesController {
         }
         catch(e) {
             console.log(`api,${e}`);
-            res.status(500).json({ error: e});
+            res.status(500).json({ error: e });
         }
     }
 

@@ -7,7 +7,7 @@ export default class ReviewsController {
     static async apiPostReview(req, res, next) {
         try {
             // retrieve info from request's body parameter
-            const movieId = req.body.movieId;
+            const movieId = req.body.movie_id;
             const { review } = req.body;
             const userInfo = {
                 name: req.body.name,
