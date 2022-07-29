@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Movie from 'src/app/interfaces/movies';
 import * as moment from 'moment';
+import User from 'src/app/interfaces/user';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-movie',
@@ -29,8 +31,13 @@ export class MovieComponent implements OnInit, OnDestroy {
   constructor(
     private _movieDataService: MovieDataService,
     private _route: ActivatedRoute /* contains component route info */,
-    private _router: Router
+    private _router: Router,
+    private _loginService: LoginService
   ) {}
+
+  get userInfo(): User {
+    return this._loginService.user;
+  }
 
   ngOnInit(): void {
     this.subscription = this._route.params.subscribe((params) => {
