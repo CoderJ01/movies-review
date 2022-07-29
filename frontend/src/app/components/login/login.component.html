@@ -1,1 +1,27 @@
-
+<form [formGroup]="form" (ngSubmit)="login()">
+    <div class="mb-3">
+        <label for="name" class="form-label"></label>
+        <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Enter username"
+            formControlName="name"
+        >
+        <div>
+            <div class="mb-3">
+                <label for="id">ID</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="id"
+                    placeholder="Enter id"
+                    formControlName="id"
+                >
+            </div>
+            <div class="mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
