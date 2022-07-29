@@ -1,1 +1,26 @@
-<p>movies-list works!</p>
+<h3>Movie Results</h3> <!-- form title -->
+<!-- form to search by title and rating dropdown -->
+<div class="row">
+    <div class="col">
+        <div class="mb-3">
+            <!-- formControl directive in input control bind it to title FormControl in MoviesListComponent class -->
+            <input
+                id="title"
+                class="form-control"
+                [formControl]="title"
+                placeholder="Search by title">
+        </div>
+    </div>
+    <div class="col">
+        <select
+            class="form-select"
+            #selectRating
+            (change)="changeRating(selectRating.value)"
+        >   
+            <option selected>Select by Rating</option>
+            <option *ngFor="let rating of ratings" [value]="rating">
+                {{rating}}
+            </option>
+        </select>
+    </div>
+</div>
