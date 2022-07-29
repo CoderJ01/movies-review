@@ -45,4 +45,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
           })
       })
   }
+
+  ngOnDestroy(): void {
+    if(this.subscriptionRatings) {
+      this.subscriptionRatings.unsubscribe();
+    }
+    if(this.subscriptionMovies) {
+      this.subscriptionMovies.unsubscribe();
+    }
+  }
 }
