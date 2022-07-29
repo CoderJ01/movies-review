@@ -1,1 +1,24 @@
-<p>movie works!</p>
+<div class="row">
+    <!-- movie poster -->
+    <div class="col">
+        <img
+            *ngIf="movie.poster"
+            src="{{ movie.poster }}"
+            class="card-img-top" alt="..."
+        >
+    </div>
+    
+    <!-- movie details -->
+    <div class="col">
+        <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <p class="card-text">{{ movie.plot }}</p>
+            <a
+                class="btn btn-primary"
+                [routerLink]="['/movies/review', movie._id]">
+                Add Reviews
+            </a>
+        </div>
+    </div>
+
+</div>
