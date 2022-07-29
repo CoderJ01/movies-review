@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // HttpClient provides methods (e.g. get())
 import { Injectable } from '@angular/core'; // used to mark MovieDataService as availible for dependency injection (di)
-import { find, Observable } from 'rxjs';  // observable enables notification when data arrives asynchronously
+import { Observable } from 'rxjs';  // observable enables notification when data arrives asynchronously
 import Movie from 'src/app/interfaces/movie';
 import Movies from 'src/app/interfaces/movies';
 

@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
-  // styleUrls: ['./movies-list.component.css']
+  styleUrls: ['./movies-list.component.css'],
   providers: [MovieDataService]
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
@@ -22,7 +22,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   subscriptionRatings!: Subscription;
   subscriptionMovies!: Subscription;
 
-  constructor(private_movieDataService: MovieDataService) {}
+  constructor(private _movieDataService: MovieDataService) {}
 
   ngOnInit() {
     // calls MovieDataService.getRatings()
@@ -39,10 +39,18 @@ export class MoviesListComponent implements OnInit, OnDestroy {
        // distinctUntilChanged, receive Observable only when text is changed
       debounceTime(400), distinctUntilChanged())
       .subscribe((value) => {
-        this.subscriptionMovies = this.movieDataService.find(value, "title")
+        this.subscriptionMovies = this._movieDataService.find(value, "title")
           .subscribe((data) => {
             this.movies = data.movies;
           })
+      })
+  }
+
+  changeRating(value: string) {
+    this.subscriptionMovies = this._movieDataService.find(value, "rated")
+      .subscribe((data) => {
+        this.movies = data.movies;
+        console.log("ratingsDropdown", this.movies);
       })
   }
 
