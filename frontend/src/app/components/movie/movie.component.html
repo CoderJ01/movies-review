@@ -31,15 +31,17 @@
                         {{ review.name }} reviewed on {{ getFormattedDate(review.date) }}
                     </h5>
                     <p class="card-text">{{ review.review }}</p>
-                    <a class="card-link">
-                        Edit
-                    </a>
-                    <button
-                        type="button"
-                        class="btn btn-link"
-                    >
-                        Delete
-                    </button>
+                    <div *ngIf="userInfo.id.length > 0 && userInfo.id === review.user_id">
+                        <a class="card-link">
+                            Edit
+                        </a>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                        >
+                            Delete
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
