@@ -13,11 +13,13 @@
         <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
             <p class="card-text">{{ movie.plot }}</p>
-            <a
-                class="btn btn-primary"
-                [routerLink]="['/movies/review', movie._id]">
-                Add Reviews
-            </a>
+            <div *ngIf="userInfo.name.length > 0 && userInfo.id.length > 0">
+                <a
+                    class="btn btn-primary"
+                    [routerLink]="['/movies/review', movie._id]">
+                    Add Reviews
+                </a>
+            </div>
         </div>
 
         <!-- list reviews -->
