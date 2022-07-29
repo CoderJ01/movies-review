@@ -3,6 +3,7 @@ import { MovieDataService } from '../../services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Movie from 'src/app/interfaces/movies';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-movie',
@@ -45,5 +46,9 @@ export class MovieComponent implements OnInit, OnDestroy {
     if(this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  getFormattedDate(date: Date) {
+    return moment(date).format("Do MMMM YYYY");
   }
 }

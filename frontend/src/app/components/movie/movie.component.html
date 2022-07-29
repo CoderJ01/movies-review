@@ -25,8 +25,8 @@
         <div *ngFor="let review of movie.reviews">
             <div class="card border-light">
                 <div class="card-body">
-                    <h5 class="card-body">
-                        {{ review.name }} reviewed on {{ review.date }}
+                    <h5 class="card-title">
+                        {{ review.name }} reviewed on {{ getFormattedDate(review.date) }}
                     </h5>
                     <p class="card-text">{{ review.review }}</p>
                     <a class="card-link">
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 </div>
