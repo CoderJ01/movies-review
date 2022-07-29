@@ -34,11 +34,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     // calls MovieDataService.find to get list of movies and fullfill search critera entered by user
     // filter: make a request when user types 3+ characters
     // prevent backend from being flooded with too many request
+    // @ts-ignore: Object is possibly 'null'.
     this.title.valueChanges.pipe(filter((text) => text.length >= 3),
        // wait 400 ms b/w requests
        // distinctUntilChanged, receive Observable only when text is changed
       debounceTime(400), distinctUntilChanged())
       .subscribe((value) => {
+        // @ts-ignore: Object is possibly 'null'.
         this.subscriptionMovies = this._movieDataService.find(value, "title")
           .subscribe((data) => {
             this.movies = data.movies;
