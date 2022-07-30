@@ -55,6 +55,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   changeRating(value: string) {
+    this.currentPage = 0;
+    this.currentSearchRating = value;
+    this.currentSearchTitle;
     this.subscriptionMovies = this._movieDataService.find(value, "rated")
       .subscribe((data) => {
         this.movies = data.movies;
@@ -74,10 +77,19 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   // increments currentPage, calls MovieDataService.find
   getNextPage() {
     this.currentPage++;
-    this.subscriptionMovies = this._movieDataService
+    if(this.currentSearchTitle.length > 0) {
+      this.subscriptionMovies = this._movieDataService
       .find(this.currentSearchTitle, 'title', this.currentPage)
       .subscribe((data) => {
         this.movies = data.movies;
+      });
+    }
+    else if (this.currentSearchRating.length > 0) {
+      this.subscriptionMovies = this._movieDataService
+      .find(this.currentSearchRating, 'rating', this.currentPage)
+      .subscribe((data) => {
+        this.movies = data.movies;
       })
+    }
   }
 }
