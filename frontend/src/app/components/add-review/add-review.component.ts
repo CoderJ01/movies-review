@@ -33,6 +33,7 @@ export class AddReviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void { 
+    // allow for retrieval of state and review object
     if(history.state.data) {
       this.editing = true;
       this.form.setValue({ review: history.state.data.review.review });
