@@ -32,7 +32,9 @@
                     </h5>
                     <p class="card-text">{{ review.review }}</p>
                     <div *ngIf="userInfo.id.length > 0 && userInfo.id === review.user_id">
-                        <a class="card-link">
+                        <a class="card-link"
+                            [routerLink]="['/movies/review', movie._id]"
+                            [state]="{ data: { review:review }}">
                             Edit
                         </a>
                         <button
