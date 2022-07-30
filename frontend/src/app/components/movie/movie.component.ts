@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieDataService } from '../../services/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import Movie from 'src/app/interfaces/movies';
+// import Movie from 'src/app/interfaces/movies';
 import * as moment from 'moment';
 import User from 'src/app/interfaces/user';
 import { LoginService } from 'src/app/services/login.service';
@@ -18,7 +18,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
 
   // hold specific movie shown
-  movie: Movie = {
+  movie = {
     poster: '',
     title: '',
     rated: '',
