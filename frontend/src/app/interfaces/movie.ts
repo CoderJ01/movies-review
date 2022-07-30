@@ -1,6 +1,6 @@
 import Review from 'src/app/interfaces/review';
 
-export default interface Movie {
+interface Movie extends Review {
     poster: string;
     title: string;
     rated: string;
@@ -8,6 +8,8 @@ export default interface Movie {
     _id: string;
     reviews: Array<Review>;
 }
+
+export default Movie;
 
 // Interfaces enforce the structure of data objects that are received. Property names of interfaces map to
 // exact property names recieved from backend API

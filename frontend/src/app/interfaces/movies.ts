@@ -1,5 +1,7 @@
 import Movie from 'src/app/interfaces/movie';
 
-export default interface Movies {
+interface Movies extends Movie {
     movies: Array<Movie>;
 }
+
+export default Movies;
