@@ -32,7 +32,12 @@ export class AddReviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+    if(history.state.data) {
+      this.editing = true;
+      this.form.setValue({ review: history.state.data.review.review });
+    }
+  }
 
   saveReview() {
     // review properties
