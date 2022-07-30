@@ -19,6 +19,11 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   movies: Array<Movie> = []; // hold all movies to be displayed
   ratings: Array<string> = []; // hold all values to populate ratings dropdown
 
+  currentPage = 0; // keep track of page currently displayed
+  currentSearchTitle = ''; // store current user-entered title
+  currentSearchRating = ''; // stores rating
+  entriesPerPage = '';
+
   subscriptionRatings!: Subscription;
   subscriptionMovies!: Subscription;
 
@@ -39,6 +44,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
        // distinctUntilChanged, receive Observable only when text is changed
       debounceTime(400), distinctUntilChanged())
       .subscribe((value) => {
+        this.currentPage = 0;
+        this.currentSearchTitle = value;
+        this.currentSearchRating = '';
         this.subscriptionMovies = this._movieDataService.find(value!, "title")
           .subscribe((data) => {
             this.movies = data.movies;
@@ -61,5 +69,15 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     if(this.subscriptionMovies) {
       this.subscriptionMovies.unsubscribe();
     }
+  }
+
+  // increments currentPage, calls MovieDataService.find
+  getNextPage() {
+    this.currentPage++;
+    this.subscriptionMovies = this._movieDataService
+      .find(this.currentSearchTitle, 'title', this.currentPage)
+      .subscribe((data) => {
+        this.movies = data.movies;
+      })
   }
 }
