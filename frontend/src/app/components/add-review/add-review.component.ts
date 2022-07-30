@@ -49,11 +49,21 @@ export class AddReviewComponent implements OnInit, OnDestroy {
       review_id: ''
     }
 
-    this.subscriptionMovieService = this._movieDataService
+    if(this.editing) {
+      data.review_id = history.state.data.review._id;
+      this.subscriptionMovieService = this._movieDataService
+        .updateReview(data)
+        .subscribe((response) => {
+          this.submitted = true;
+        })
+    } 
+    else {
+      this.subscriptionMovieService = this._movieDataService
       .createReview(data)
       .subscribe((response) => {
         this.submitted = true;
       })
+    } 
   }
 
   ngOnDestroy(): void {
