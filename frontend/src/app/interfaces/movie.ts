@@ -1,12 +1,21 @@
 import Review from 'src/app/interfaces/review';
 
-interface Movie extends Review {
-    poster: string;
-    title: string;
-    rated: string;
-    plot: string;
-    _id: string;
-    reviews: Array<Review>;
+// interface Movie extends Review {
+//     poster: string;
+//     title: string;
+//     rated: string;
+//     plot: string;
+//     _id: string;
+//     reviews: Array<Review>;
+// }
+
+const Movie = {
+    poster: '',
+    title: '',
+    rated: '',
+    plot: '',
+    _id: '',
+    reviews: Review
 }
 
 export default Movie;
