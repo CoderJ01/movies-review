@@ -1,9 +1,30 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieDataService } from 'src/app/services/movie.service';
-import Movie from 'src/app/interfaces/movie';
+// import Movie from 'src/app/interfaces/movie';
 import { FormControl } from '@angular/forms';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+
+interface Review {
+  name: string;
+  date: Date;
+  review: string;
+  user_id: string;
+  _id: string;
+}
+
+interface Movie extends Review {
+  poster: string;
+  title: string;
+  rated: string;
+  plot: string;
+  _id: string;
+  reviews: Array<Review>;
+}
+
+interface Movies extends Movie {
+  movies: Array<Movie>;
+}
 
 @Component({
   selector: 'app-movies-list',
@@ -16,21 +37,21 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   title = new FormControl(''); // represents title field
   ratingsDropdown = new FormControl(); // represents ratings dropdown field
   
-  // movies: Array<Movie> = []; // hold all movies to be displayed
-  movies = {
-    poster: '',
-    title: '',
-    rated: '',
-    plot: '',
-    _id: '',
-    reviews: {
-      name: '',
-      date: new Date(),
-      review: '',
-      user_id: '',
-      _id: ''
-    }
-  }
+  movies: Array<Movie> = []; // hold all movies to be displayed
+  // movies = {
+  //   poster: '',
+  //   title: '',
+  //   rated: '',
+  //   plot: '',
+  //   _id: '',
+  //   reviews: {
+  //     name: '',
+  //     date: new Date(),
+  //     review: '',
+  //     user_id: '',
+  //     _id: ''
+  //   }
+  // };
   ratings: Array<string> = []; // hold all values to populate ratings dropdown
 
   currentPage = 0; // keep track of page currently displayed
@@ -59,7 +80,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       debounceTime(400), distinctUntilChanged())
       .subscribe((value) => {
         this.currentPage = 0;
-        this.currentSearchTitle = value;
+        this.currentSearchTitle = '';
         this.currentSearchRating = '';
         this.subscriptionMovies = this._movieDataService.find(value!, "title")
           .subscribe((data) => {

@@ -1,8 +1,29 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // HttpClient provides methods (e.g. get())
 import { Injectable } from '@angular/core'; // used to mark MovieDataService as availible for dependency injection (di)
 import { Observable } from 'rxjs';  // observable enables notification when data arrives asynchronously
-import Movie from 'src/app/interfaces/movie';
-import Movies from 'src/app/interfaces/movies';
+// import Movie from 'src/app/interfaces/movie';
+// import Movies from 'src/app/interfaces/movies';
+
+interface Review {
+    name: string;
+    date: Date;
+    review: string;
+    user_id: string;
+    _id: string;
+}
+
+interface Movie extends Review {
+    poster: string;
+    title: string;
+    rated: string;
+    plot: string;
+    _id: string;
+    reviews: Array<Review>;
+}
+
+interface Movies extends Movie {
+    movies: Array<Movie>;
+}
 
 // di supplies instances of classes you depend on
 @Injectable()
