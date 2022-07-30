@@ -58,4 +58,14 @@ export class MovieComponent implements OnInit, OnDestroy {
   getFormattedDate(date: Date) {
     return moment(date).format("Do MMMM YYYY");
   }
+
+  deleteReview(reviewId: string) {
+    this._movieDataService
+      .deleteReview(reviewId, this._loginService.user.id)
+      .subscribe((response) => {
+        this.movie.reviews = this.movie.reviews.filter(
+          ({ _id }) => _id !== reviewId
+        );
+      })
+  }
 }
