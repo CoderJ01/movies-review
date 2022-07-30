@@ -1,1 +1,41 @@
-<p>add-review works!</p>
+<!-- displays after user submits form -->
+<div *ngIf="submitted ; else elseBlock">
+    <h4>Review submitted successfully</h4>
+    <a class="btn btn-primary" [routerLink]="['/movies/', id]">
+        Back to Movie
+    </a>
+</div>
+
+<!-- check if form is in editing mode (yes or no) -->
+<ng-template #elseBlock>
+    <form [formGroup]="form" (ngSubmit)="saveReview()">
+        <div class="mb-3">
+
+            <!-- Yes -->
+            <div *ngIf="editing ; else elseBlockReview">
+                <h4>Edit Review</h4>
+            </div>
+
+            <!-- No -->
+            <ng-template #elseBlockReview>
+                <h4>Create Review</h4>
+            </ng-template>
+
+            <!-- Review Form Control -->
+            <input
+                type="text"
+                class="form-control"
+                id="review"
+                formControl="review"
+            >
+
+        </div>
+        <div class="mb-3">
+            <button
+                type="submit"
+                class="btn btn-primary mb-3">
+                Submit
+            </button>
+        </div>
+    </form>
+</ng-template>
