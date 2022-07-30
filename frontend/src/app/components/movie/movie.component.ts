@@ -18,7 +18,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
 
   // hold specific movie shown
-  movie: Movie = {
+  movie: any = {
     poster: '',
     title: '',
     rated: '',

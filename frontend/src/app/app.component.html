@@ -11,7 +11,7 @@
         </li>
         <li class="nav-item">
           <div *ngIf="userInfo.name.length > 0 && userInfo.id.length > 0; else elseBlock">
-            <a class="nav-link" (click)="logiut()">
+            <a class="nav-link" (click)="logout()">
               Logout {{ userInfo.name }}
             </a>
           </div>

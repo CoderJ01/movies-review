@@ -15,11 +15,11 @@ export class AddReviewComponent implements OnInit, OnDestroy {
   id = '';
   subscriptionParams!: Subscription;
   subscriptionMovieService!: Subscription;
-  submitted = 'false';
+  submitted = false;
 
   // keep track of review submitted
   form = new FormGroup({
-    review: new FormControl('');
+    review: new FormControl('')
   });
 
   constructor(
@@ -27,7 +27,7 @@ export class AddReviewComponent implements OnInit, OnDestroy {
     private _loginService: LoginService,
     private _movieDataService: MovieDataService
   ) { 
-    this.subscriptionParams = this._route.params.subscribe((params) => {\
+    this.subscriptionParams = this._route.params.subscribe((params) => {
       this.id = params['id']
     });
   }
