@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   // called when user clicks on submit button
   login() {
     this._loginService.login(
-      this.form.controls['name'].value,
-      this.form.controls['id'].value
+      this.form.controls['name'].value!,
+      this.form.controls['id'].value!
     );
 
     // check if login is successful
