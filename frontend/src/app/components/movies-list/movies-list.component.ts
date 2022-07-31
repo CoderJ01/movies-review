@@ -45,7 +45,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       debounceTime(400), distinctUntilChanged())
       .subscribe((value) => {
         this.currentPage = 0;
-        this.currentSearchTitle = value;
+        this.currentSearchTitle = value!;
         this.currentSearchRating = '';
         this.subscriptionMovies = this._movieDataService.find(value!, "title")
           .subscribe((data) => {
