@@ -16,6 +16,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class MovieComponent implements OnInit, OnDestroy {
   id = '';
   subscription!: Subscription;
+  start = new Date(Date.now());
 
   // hold specific movie shown
   movie: Movie = {
@@ -24,7 +25,12 @@ export class MovieComponent implements OnInit, OnDestroy {
     rated: '',
     plot: '',
     _id: '',
-    reviews: []
+    reviews: [],
+    movies: [],
+    name: '',
+    date: this.start,
+    review: '',
+    user_id: ''
   };
 
   // use dependency injection to get an instance of MovieDataService, ..., and Router
