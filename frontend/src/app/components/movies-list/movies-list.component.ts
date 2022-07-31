@@ -16,7 +16,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   title = new FormControl(''); // represents title field
   ratingsDropdown = new FormControl(); // represents ratings dropdown field
   
-  movies: Array<Movie> = []; // hold all movies to be displayed
+  movies?: Array<Movie> = []; // hold all movies to be displayed
   ratings: Array<string> = []; // hold all values to populate ratings dropdown
 
   currentPage = 0; // keep track of page currently displayed
