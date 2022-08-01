@@ -62,7 +62,6 @@ export default class ReviewsDAO {
             return deleteResponse;
         }
         catch(e) {
-            console.log("FAIL");
             console.error(`unable to delete review: ${e}`);
             return { error: e }
         }

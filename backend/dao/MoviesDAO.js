@@ -16,7 +16,7 @@ export default class MoviesDAO {
         try {
             // connect to database
             MoviesDAO.movies = await conn.db(process.env.MOVIEREVIEWS_NS)
-                .collection('movies').createIndex( { "$**": "text" } )
+                .collection('movies');
         }
         catch(e) {
             console.error(`unable to connect in MoviesDAO: ${e}`);
@@ -72,7 +72,7 @@ export default class MoviesDAO {
         }
         catch(e) {
             console.log(`unable to get ratings, ${e}`);
-            // return ratings;
+            return ratings;
         }
     }
 
