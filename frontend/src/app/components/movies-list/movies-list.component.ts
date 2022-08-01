@@ -22,7 +22,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   currentPage = 0; // keep track of page currently displayed
   currentSearchTitle = ''; // store current user-entered title
   currentSearchRating = ''; // stores rating
-  entriesPerPage = '';
+  entriesPerPage = 20;
 
   subscriptionRatings!: Subscription;
   subscriptionMovies!: Subscription;
@@ -57,7 +57,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   changeRating(value: string) {
     this.currentPage = 0;
     this.currentSearchRating = value;
-    this.currentSearchTitle;
+    this.currentSearchTitle = '';
     this.subscriptionMovies = this._movieDataService.find(value, "rated")
       .subscribe((data) => {
         this.movies = data.movies;

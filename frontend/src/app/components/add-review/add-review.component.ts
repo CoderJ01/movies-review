@@ -28,7 +28,7 @@ export class AddReviewComponent implements OnInit, OnDestroy {
     private _movieDataService: MovieDataService
   ) { 
     this.subscriptionParams = this._route.params.subscribe((params) => {
-      this.id = params['id']
+      this.id = params['id'];
     });
   }
 
