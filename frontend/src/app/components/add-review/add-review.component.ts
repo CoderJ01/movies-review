@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
@@ -11,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./add-review.component.css']
 })
 export class AddReviewComponent implements OnInit, OnDestroy {
-  editing = false; // 'true' when component is in editing mode; false, review add
+  editing = false; // 'true' when component is in editing mode; false, review mode
   id = '';
   subscriptionParams!: Subscription;
   subscriptionMovieService!: Subscription;
