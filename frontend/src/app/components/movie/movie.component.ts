@@ -69,7 +69,7 @@ export class MovieComponent implements OnInit, OnDestroy {
       .deleteReview(reviewId, this._loginService.user.id)
       // filter creates new array will all test-passing elements
       // new review arrays will not contain reviews marked for deletion
-      .subscribe((response) => {
+      .subscribe(response => {
         this.movie.reviews = this.movie.reviews.filter(
           ({ _id }) => _id !== reviewId
         );
