@@ -28,7 +28,7 @@ class Index {
         Index.app.use(express.json()); // enable server to read and accept JSON in request's body
         
         // specify initial routes 
-        Index.app.use('/api/vl/movies',
+        Index.app.use('/api/v1/movies',
             MoviesRoute.configRoutes(Index.router));
         Index.app.use('*', (req, res) => {
             res.status(404).json({error: 'not found'});

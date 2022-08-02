@@ -14,26 +14,26 @@ export class MovieDataService {
     // return all movies in for a particular string
     find(query: string, by = 'title', page = 0): Observable<Movies> {
         return this._http.get<Movies>(
-            `http://localhost:5000/api/vl/movies?${by}=${query}&page=${page}`
+            `http://localhost:5000/api/v1/movies?${by}=${query}&page=${page}`
         );
     }
 
     // gets a specific movie with a supplied id
     get(id: string): Observable<Movie> {
         return this._http.get<Movie>(
-            `http://localhost:5000/api/vl/movies/id/${id}`
+            `http://localhost:5000/api/v1/movies/id/${id}`
         );
     }
 
     createReview(data: any) {
         return this._http.post<any>(
-            'http://localhost:5000/api/vl/movies/review',
+            'http://localhost:5000/api/v1/movies/review',
             data
         );
     }
 
     updateReview(data: any) {
-        return this._http.put('http://localhost:5000/api/vl/movies/review', data)
+        return this._http.put('http://localhost:5000/api/v1/movies/review', data)
     }
 
     deleteReview(review_id: string, user_id: string) {
@@ -47,14 +47,14 @@ export class MovieDataService {
             }
         }
         return this._http.delete(
-            'http://localhost:5000/api/vl/movies/review',
+            'http://localhost:5000/api/v1/movies/review',
             options
         );
     }
 
     getRatings(): Observable<string[]> {
         return this._http.get<string[]>(
-            'http://localhost:5000/api/vl/movies/ratings'
+            'http://localhost:5000/api/v1/movies/ratings'
         );
     }
 }
