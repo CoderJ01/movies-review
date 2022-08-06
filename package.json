@@ -1,0 +1,27 @@
+{
+  "name": "movies-review",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/Index.js",
+    "src": "cd frontend && ng serve --open",
+    "server": "cd backend && node Index.js",
+    "start_full_app": "concurrently \"npm run server\" \"npm run src\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoderJ01/movies-review.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoderJ01/movies-review/issues"
+  },
+  "homepage": "https://github.com/CoderJ01/movies-review#readme",
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
+}
